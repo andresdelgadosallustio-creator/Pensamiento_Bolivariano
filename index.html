@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manifiesto de Cartagena - Análisis Económico | Andrés Delgado</title>
+    <title>La Unión Sudamericana | Andrés Delgado</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
             --lasalle-blue: #002855;
             --lasalle-gold: #FFD700;
             --soft-white: #F8F9FA;
-            --accent-gold: #D4AF37;
+            --union-red: #C41E3A;
         }
 
         body {
@@ -25,504 +25,239 @@
             background-color: var(--soft-white);
             color: #1a1a1a;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 40, 85, 0.85), rgba(0, 40, 85, 0.85)), 
-                        url('https://images.unsplash.com/photo-1550985543-49ef9ac6f50b?auto=format&fit=crop&q=80&w=1600') center/cover;
-            height: 50vh;
+        /* Hero Section Dinámico */
+        .hero-union {
+            background: linear-gradient(rgba(0, 40, 85, 0.7), rgba(0, 40, 85, 0.9)), 
+                        url('https://images.unsplash.com/photo-1599739291060-4578e77dac5d?auto=format&fit=crop&q=80&w=1600') center/cover;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            padding: 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
         }
 
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        .badge-salle {
-            background-color: var(--lasalle-gold);
-            color: var(--lasalle-blue);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        /* Carrusel Moderno */
-        .carousel-container {
+        /* Línea de Tiempo Vertical */
+        .timeline-container {
             position: relative;
-            max-width: 900px;
-            margin: 40px auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            cursor: pointer;
+            padding: 20px 0;
         }
-
-        .carousel-slide {
-            display: none;
-            width: 100%;
-            height: 450px;
-            position: relative;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-
-        .carousel-text {
+        .timeline-line {
             position: absolute;
-            bottom: 40px;
-            left: 40px;
-            right: 40px;
-            color: white;
-            z-index: 10;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--lasalle-gold);
+            transform: translateX(-50%);
         }
-
-        /* Tarjetas de Análisis */
-        .eco-card {
-            background: white;
-            border-left: 6px solid var(--lasalle-gold);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            cursor: pointer;
+        .timeline-item {
+            margin-bottom: 40px;
+            width: 45%;
+            position: relative;
         }
-
-        .eco-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .highlight-blue {
-            color: var(--lasalle-blue);
-            font-weight: 900;
-        }
-
-        /* Estilo de Frases */
-        .quote-box {
+        .timeline-item.right { margin-left: 55%; }
+        .timeline-dot {
+            position: absolute;
+            right: -12.5%;
+            top: 10px;
+            width: 20px;
+            height: 20px;
             background: var(--lasalle-blue);
-            color: white;
-            padding: 40px;
-            border-radius: 30px;
-            position: relative;
-            font-style: italic;
+            border: 4px solid var(--lasalle-gold);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .right .timeline-dot { left: -12.5%; }
+
+        /* Tarjetas de la Unión */
+        .union-card {
+            background: white;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .union-card:hover {
+            transform: scale(1.03) translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 40, 85, 0.25);
         }
 
-        .quote-box::before {
-            content: "\f10d";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            font-size: 60px;
-            color: rgba(255, 215, 0, 0.2);
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
+        /* Efectos de Sonido Hover */
+        .snd-hover { cursor: pointer; }
 
-      /* Tarjetas con Efecto Flip */
-        .flip-card {
-            background-color: transparent;
-            perspective: 1000px;
-            height: 300px;
-        }
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            border-radius: 15px;
-        }
-        .flip-card-front { background-color: white; color: var(--lasalle-blue); border: 2px solid var(--lasalle-gold); }
-        .flip-card-back { background-color: var(--lasalle-blue); color: white; transform: rotateY(180deg); }
-
-        /* Barra de Crisis */
-        .crisis-bar {
-            height: 15px;
-            background: #e2e8f0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 8px;
-        }
-        .crisis-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #FFD700, #ef4444);
-            transition: width 2s ease-in-out;
-        }
-
-        /* Footer Estilo Colegio */
         footer {
             background-color: var(--lasalle-blue);
             color: white;
-            padding: 15px 5px;
+            padding: 30px 10px;
             text-align: center;
         }
 
-        .footer-line {
-            height: 4px;
-            width: 80px;
-            background: var(--lasalle-gold);
-            margin: 20px auto;
+        .gradient-text {
+            background: linear-gradient(90deg, #FFD700, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .btn-scroll {
-            background: var(--lasalle-gold);
-            color: var(--lasalle-blue);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        .table-custom th {
-            background-color: var(--lasalle-blue);
-            color: white;
-        }
-
-        details summary { outline: none; }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <header class="mb-10 p-4 border-b-4 border-accent-orange bg-white shadow-xl rounded-b-xl">
+    <!-- BANNER INSTITUCIONAL [source: 1] -->
+    <header class="mb-10 p-4 border-b-4 border-yellow-500 bg-white shadow-xl rounded-b-xl">
         <div class="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm">
-            
             <div class="w-full md:w-1/4 text-left mb-4 md:mb-0 flex justify-center md:justify-start">
                 <a href="https://www.lslc.edu.ve/" target="_blank">
-                        <img src="https://lh3.googleusercontent.com/d/1BYlQ6pVnT1pKVxhg1qS1S8NIPtLt-Rk-=s220?authuser=0" alt="Logo La Salle La Colina" title="Logo La Salle La Colina" class="snd-hover">
+                    <img src="https://lh3.googleusercontent.com/d/1BYlQ6pVnT1pKVxhg1qS1S8NIPtLt-Rk-=s220?authuser=0" alt="Logo La Salle" class="snd-hover h-16">
                 </a>
             </div>
-            
-            <div class="w-full md:w-2/4 text-center font-bold space-y-0.5">
-                <p class="text-primary-black uppercase text-sm md:text-base">República Bolivariana de Venezuela</p>
-                <p class="text-black-700 text-xs md:text-sm">Ministerio del Poder Popular para la Educación</p>
-                <p class="text-accent-black text-xs md:text-sm">Unidad Educativa Colegio La Salle La Colina</p>
-                <div class="text-xs text-black-500 mt-1">
-                    <p>Año escolar: 2025-2026 2do momento</p>
-                    <p>Año y sección: 3er año "A" | Área de formación: GHC | Profesor: Jesús Goite</p>
+            <div class="w-full md:w-2/4 text-center font-bold">
+                <p class="uppercase text-sm">República Bolivariana de Venezuela</p>
+                <p>Ministerio del Poder Popular para la Educación</p>
+                <p>U.E. Colegio La Salle La Colina</p>
+                <div class="text-xs mt-1 text-blue-800">
+                    <p>Año escolar: 2025-2026 | 3er año "A"</p>
                 </div>
             </div>
-
             <div class="w-full md:w-1/4 text-right mt-4 md:mt-0 flex justify-center md:justify-end">
-                <a href="https://www.lasalle.org/reflexion-lasallista-11-todo-esta-conectado-la-comunidad-de-la-creacion-y-la-fraternidad-universal/?print=print" target="_blank">
-                        <img src="https://lh3.googleusercontent.com/d/1ebbIWcu8BO69rBXvVLtj8y2kX1_YYhbO=s110?authuser=0" alt="Lema Lasallista 2025-2026" title="Lema Lasallista 2025-2026" class="snd-hover">
-                </a>
+                <img src="https://lh3.googleusercontent.com/d/1ebbIWcu8BO69rBXvVLtj8y2kX1_YYhbO=s110?authuser=0" alt="Lema" class="h-16">
             </div>
         </div>
     </header>
 
-    <header class="hero">
-        <div>
-            <h1 class="reveal-up">Bolívar y el <br><span class="text-yellow-400">Error Económico</span></h1>
-            <p class="text-xl md:text-2xl mb-8 font-light italic reveal-up">"¿Por qué perdimos la libertad? Un análisis del Manifiesto de Cartagena."</p>
-            <div class="btn-scroll snd-click">
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
+    <!-- HERO SECTION -->
+    <section class="hero-union">
+        <div class="px-4">
+            <span class="bg-yellow-400 text-blue-900 px-4 py-1 rounded-full font-black text-sm uppercase tracking-widest reveal-up">GHC - Pensamiento Bolivariano</span>
+            <h1 class="text-5xl md:text-7xl font-black mt-4 reveal-up">El Sueño de la <br><span class="gradient-text">Unión Sudamericana</span></h1>
+            <p class="mt-6 text-xl opacity-90 reveal-up italic">"Una sola debe ser la patria de todos los americanos"</p>
         </div>
-    </header>
+    </section>
 
-    <main class="container mx-auto px-4 py-4">
-        
-        <section id="identidad" class="mb-20 grid md:grid-cols-2 gap-12 items-center">
-            <div class="reveal-left">
-                <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase tracking-tighter">Nombre Real</h2>
-                <div class="p-8 bg-white rounded-3xl shadow-xl border-t-8 border-blue-900 snd-hover">
-                    <p class="text-lg text-gray-500 mb-2 uppercase font-bold tracking-widest">Título Oficial</p>
-                    <p class="text-2xl font-serif italic text-blue-900">
-                        "Memoria dirigida a los ciudadanos de la Nueva Granada por un caraqueño"
-                    </p>
-                    <div class="mt-6 flex items-center">
-                        <i class="fa-solid fa-feather-pointed text-yellow-500 text-3xl mr-4"></i>
-                        <div>
-                            <p class="font-bold">Simón Bolívar</p>
-                            <p class="text-sm text-gray-500">15 de diciembre de 1812</p>
-                        </div>
+    <main class="container mx-auto px-4 py-12">
+
+        <!-- SECCIÓN 1: EVOLUCIÓN DEL PENSAMIENTO (Línea de Tiempo) -->
+        <section id="evolucion" class="mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-blue-900 uppercase">Hitos del Pensamiento</h2>
+                <p class="text-gray-500">De la rebeldía a la consolidación continental</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <!-- Item 1 -->
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-r-8 border-blue-900">
+                        <span class="text-yellow-600 font-black">1812</span>
+                        <h4 class="font-bold text-xl">Manifiesto de Cartagena</h4>
+                        <p class="text-sm text-gray-600">Primer análisis crítico. Bolívar entiende que la desunión nos lleva al fracaso.</p>
                     </div>
                 </div>
-            </div>
-            <div class="reveal-right">
-                <div class="carousel-container snd-click" id="main-carousel">
-                    <div class="carousel-slide active-slide">
-                        <img src="https://lh3.googleusercontent.com/d/18j-l8ABHcYLrqQsnLKrgj7bFa2Epr4VR=s0?authuser=0" alt="[Imagen de Documento Antiguo]">
-                        <div class="carousel-text">
-                            <h3 class="text-2xl font-bold">Hoja de Ruta</h3>
-                            <p>No fue solo un discurso, fue un diagnóstico de supervivencia.</p>
-                        </div>
+
+                <!-- Item 2 -->
+                <div class="timeline-item right reveal-right">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-yellow-500">
+                        <span class="text-yellow-600 font-black">1815</span>
+                        <h4 class="font-bold text-xl">Carta de Jamaica</h4>
+                        <p class="text-sm text-gray-600">La visión profética. Predice el destino de las naciones americanas y propone la unión.</p>
                     </div>
-                    <div class="carousel-slide">
-                        <img src="https://lh3.googleusercontent.com/d/10W_lQcyS0GftQsIdjTt9hjcYUQudqPul=s0?authuser=0" alt="[Imagen de Mapa Histórico]">
-                        <div class="carousel-text">
-                            <h3 class="text-2xl font-bold">Estrategia Continental</h3>
-                            <p>Bolívar buscaba unir a la Nueva Granada y Venezuela.</p>
-                        </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-r-8 border-blue-900">
+                        <span class="text-yellow-600 font-black">1819</span>
+                        <h4 class="font-bold text-xl">Discurso de Angostura</h4>
+                        <p class="text-sm text-gray-600">Bases institucionales. "La unión lo hace todo y debemos conservar este principio".</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contexto" class="mb-24">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-black text-blue-900 uppercase">El Caos de 1812</h2>
-                <div class="h-1 w-24 bg-yellow-400 mx-auto mt-4"></div>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="eco-card text-center snd-hover">
-                    <i class="fa-solid fa-house-crack text-4xl mb-4 text-blue-900"></i>
-                    <h4 class="font-bold text-xl mb-2">Marzo 1812</h4>
-                    <p class="text-gray-600">Terremoto de Caracas. Desastre físico y moral que fue usado por la iglesia contra la República.</p>
-                </div>
-                <div class="eco-card text-center snd-hover" style="border-left-color: var(--lasalle-blue)">
-                    <i class="fa-solid fa-flag text-4xl mb-4 text-blue-900"></i>
-                    <h4 class="font-bold text-xl mb-2">Julio 1812</h4>
-                    <p class="text-gray-600">Capitulación de Miranda. Fin de la Primera República y exilio de los líderes patriotas.</p>
-                </div>
-                <div class="eco-card text-center snd-hover">
-                    <i class="fa-solid fa-anchor text-4xl mb-4 text-blue-900"></i>
-                    <h4 class="font-bold text-xl mb-2">Nov - Dic 1812</h4>
-                    <p class="text-gray-600">Bolívar llega a Cartagena como refugiado. Escribe la Memoria para advertir a los granadinos.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="analisis" class="mb-24 bg-blue-50 p-10 rounded-3xl">
-            <div class="flex flex-col md:flex-row gap-12 items-center">
-                <div class="md:w-1/2 reveal-left">
-                    <h2 class="text-4xl font-black text-blue-900 mb-6">Características del Ámbito Económico</h2>
-                    <p class="text-lg mb-6 leading-relaxed">
-                        Bolívar identificó que el colapso no fue solo militar, sino que el <span class="highlight-blue">veneno de la República</span> fue la mala administración de los recursos.
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start snd-hover">
-                            <i class="fa-solid fa-circle-check text-yellow-500 mt-1 mr-3"></i>
-                            <span><strong>Papel Moneda sin respaldo:</strong> Se emitió dinero sin oro o plata que lo respaldara, creando inflación.</span>
-                        </li>
-                        <li class="flex items-start snd-hover">
-                            <i class="fa-solid fa-circle-check text-yellow-500 mt-1 mr-3"></i>
-                            <span><strong>Sistema Federalista:</strong> Cada provincia manejaba su propio tesoro, impidiendo financiar un ejército central.</span>
-                        </li>
-                        <li class="flex items-start snd-hover">
-                            <i class="fa-solid fa-circle-check text-yellow-500 mt-1 mr-3"></i>
-                            <span><strong>Burocracia Excesiva:</strong> El gasto en "objetos frívolos" y sueldos de funcionarios agotó las rentas.</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="md:w-1/2 overflow-x-auto reveal-right">
-                    <table class="w-full table-custom rounded-xl overflow-hidden shadow-lg bg-white">
-                        <thead>
-                            <tr>
-                                <th class="p-4 text-left">Problema</th>
-                                <th class="p-4 text-left">Impacto Social</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b hover:bg-gray-50 snd-hover">
-                                <td class="p-4 font-bold">Emisión Ficticia</td>
-                                <td class="p-4 text-sm">Pérdida de poder adquisitivo y descontento masivo.</td>
-                            </tr>
-                            <tr class="border-b hover:bg-gray-50 snd-hover">
-                                <td class="p-4 font-bold">Desunión Fiscal</td>
-                                <td class="p-4 text-sm">Ejército mal pagado y sin suministros básicos.</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50 snd-hover">
-                                <td class="p-4 font-bold">Despilfarro</td>
-                                <td class="p-4 text-sm">Debilitamiento de las instituciones republicanas.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-24">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-black text-blue-900 uppercase italic underline decoration-yellow-400">El Cáncer del Papel Moneda</h2>
+        <!-- SECCIÓN CENTRAL: UNIÓN SUDAMERICANA (80% DEL CONTENIDO) -->
+        <section id="union-sudamericana" class="bg-blue-900 text-white rounded-[40px] p-8 md:p-16 mb-32 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10">
+                <i class="fa-solid fa-earth-americas text-[300px]"></i>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="reveal-left">
-                    <p class="text-lg leading-relaxed mb-6">
-                        Bolívar fue tajante: el mayor enemigo fue el <strong>billete sin respaldo</strong>. La República emitió dinero basándose en promesas de rentas futuras que nunca llegaron.
-                    </p>
-                    <div class="p-6 bg-red-50 border-l-8 border-red-500 rounded-r-xl snd-hover">
-                        <h4 class="font-bold text-red-700">Impacto en el Pueblo:</h4>
-                        <p class="text-sm italic">"Los pueblos veían en él una estafa que remató el descontento..."</p>
-                        <div class="mt-4">
-                            <span class="text-xs font-bold uppercase">Nivel de Desaprobación Social:</span>
-                            <div class="crisis-bar"><div class="crisis-fill" style="width: 95%;"></div></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 gap-6 reveal-right">
-                    <div class="flip-card snd-click">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <i class="fa-solid fa-money-bill-transfer text-5xl mb-4 text-yellow-500"></i>
-                                <h3 class="text-xl font-bold uppercase">Falsa Riqueza</h3>
-                                <p class="text-xs mt-2">(Pasa el mouse o toca para ver el error)</p>
+            <div class="relative z-10">
+                <h2 class="text-4xl md:text-6xl font-black mb-8 text-yellow-400">La Unión Sudamericana: <br>El Eje del Pensamiento</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="reveal-left">
+                        <p class="text-xl leading-relaxed mb-6">
+                            Para Simón Bolívar, la <strong>Unión Sudamericana</strong> no era un simple capricho político, era una <u>necesidad existencial</u>. Tras siglos de dominio español, sabía que pequeñas repúblicas aisladas serían presa fácil de nuevos imperios.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="union-card p-6 text-blue-900 snd-hover">
+                                <h4 class="font-black flex items-center"><i class="fa-solid fa-shield-halved mr-3 text-red-600"></i> BLOQUE DEFENSIVO</h4>
+                                <p class="text-sm mt-2">La unión permitiría crear un ejército continental capaz de disuadir cualquier intento de reconquista europea o invasión extranjera.</p>
                             </div>
-                            <div class="flip-card-back">
-                                <h3 class="text-xl font-bold mb-2">Error de Base</h3>
-                                <p class="text-sm px-4">Se creyó que el dinero era la riqueza misma, olvidando que sin respaldo en metales (oro/plata), pierde todo valor.</p>
+                            
+                            <div class="union-card p-6 text-blue-900 snd-hover">
+                                <h4 class="font-black flex items-center"><i class="fa-solid fa-handshake mr-3 text-blue-600"></i> EL CONGRESO DE PANAMÁ (1826)</h4>
+                                <p class="text-sm mt-2">Fue el intento más ambicioso de Bolívar para formalizar una confederación de naciones americanas bajo un solo pacto de ayuda mutua.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-right">
+                        <div class="bg-blue-800 p-6 rounded-2xl border border-blue-700">
+                            <i class="fa-solid fa-Scale-balanced text-3xl text-yellow-400 mb-4"></i>
+                            <h5 class="font-bold mb-2">Identidad Común</h5>
+                            <p class="text-xs opacity-80">Compartimos lengua, religión y costumbres. Somos una "Pequeña especie humana" diferente al resto del mundo.</p>
+                        </div>
+                        <div class="bg-blue-800 p-6 rounded-2xl border border-blue-700">
+                            <i class="fa-solid fa-bolt text-3xl text-yellow-400 mb-4"></i>
+                            <h5 class="font-bold mb-2">Equilibrio del Universo</h5>
+                            <p class="text-xs opacity-80">Bolívar creía que una América unida serviría como contrapeso entre el viejo mundo y las potencias emergentes.</p>
+                        </div>
+                        <div class="col-span-full bg-yellow-400 p-6 rounded-2xl text-blue-900">
+                            <h4 class="font-black text-center text-xl mb-4">Línea de Tiempo: Camino a la Unión</h4>
+                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-tighter">
+                                <div class="text-center"><span>1821</span><br>Constitución de Cúcuta</div>
+                                <div class="text-center"><span>1824</span><br>Victoria de Ayacucho</div>
+                                <div class="text-center"><span>1826</span><br>Congreso de Panamá</div>
+                                <div class="text-center"><span>1830</span><br>Disolución de la Gran Colombia</div>
+                            </div>
+                            <div class="w-full bg-blue-900 h-2 mt-2 rounded-full overflow-hidden">
+                                <div class="bg-red-600 h-full" style="width: 75%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="mb-24">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-black text-blue-900 uppercase">La Propuesta de Bolívar</h2>
-                <p class="text-gray-600 mt-2">Transformación del sistema para ganar la guerra.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-3xl border-2 border-dashed border-red-300 snd-hover">
-                    <h3 class="text-2xl font-bold text-red-600 mb-6 flex items-center">
-                        <i class="fa-solid fa-circle-xmark mr-3"></i> Primera República (1811)
-                    </h3>
-                    <ul class="space-y-6">
-                        <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-red-100 rounded-full flex-shrink-0 flex items-center justify-center text-red-600 font-bold">1</div>
-                            <p class="text-sm text-gray-700"><strong>Federalismo Fiscal:</strong> Cada provincia manejaba su propio tesoro, impidiendo financiar un ejército central.</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-red-100 rounded-full flex-shrink-0 flex items-center justify-center text-red-600 font-bold">2</div>
-                            <p class="text-sm text-gray-700"><strong>Despilfarro:</strong> Disipación de rentas en "objetos frívolos" y exceso de funcionarios.</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-blue-900 p-8 rounded-3xl shadow-2xl transform md:scale-105 snd-hover">
-                    <h3 class="text-2xl font-bold text-yellow-400 mb-6 flex items-center">
-                        <i class="fa-solid fa-circle-check mr-3"></i> La Visión Bolivariana
-                    </h3>
-                    <ul class="space-y-6 text-white">
-                        <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-yellow-400 rounded-full flex-shrink-0 flex items-center justify-center text-blue-900 font-bold">1</div>
-                            <p class="text-sm text-blue-100"><strong>Centralización:</strong> Un solo tesoro nacional para unificar recursos contra el enemigo.</p>
-                        </li>
-                        <li class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-yellow-400 rounded-full flex-shrink-0 flex items-center justify-center text-blue-900 font-bold">2</div>
-                            <p class="text-sm text-blue-100"><strong>Austeridad:</strong> Eliminar gastos innecesarios para comprar armas y suministros.</p>
-                        </li>
-                    </ul>
+                <div class="mt-16 p-8 bg-white/10 rounded-3xl border border-white/20 italic text-center reveal-up">
+                    <p class="text-2xl">"Yo deseo más que otro alguno ver formar en América la más grande nación del mundo, menos por su extensión y riquezas que por su libertad y gloria."</p>
+                    <span class="block mt-4 font-black text-yellow-400">— Carta de Jamaica</span>
                 </div>
             </div>
         </section>
 
-        <section id="frases" class="mb-24">
-            <h2 class="text-4xl font-black text-center text-blue-900 uppercase mb-12">Pensamiento del Libertador</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="quote-box reveal-up snd-hover">
-                    <p class="text-xl mb-6">"El papel moneda remató el descontento de los pueblos, que veían en él una estafa..."</p>
-                    <span class="block text-right font-bold text-yellow-400">— Simón Bolívar, 1812</span>
-                </div>
-                <div class="quote-box reveal-up snd-hover" style="animation-delay: 0.2s">
-                    <p class="text-xl mb-6">"La disipación de las rentas públicas en objetos frívolos... dio un golpe mortal a la República."</p>
-                    <span class="block text-right font-bold text-yellow-400">— Simón Bolívar, 1812</span>
-                </div>
-            </div>
-        </section>
-        
-
-        <section id="quiz-section" class="py-16 bg-yellow-50 rounded-[50px] border-t-4 border-yellow-400 mb-24">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-black text-blue-900 uppercase">A ver, ¿Qué aprendiste?</h2>
-                    <p class="text-blue-700 font-bold">Pequeña trivia sobre el Manifiesto de Cartagena</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-blue-900 snd-hover">
-                        <p class="font-bold text-blue-900 mb-4 text-sm">1. ¿Título oficial del documento?</p>
-                        <details class="group snd-click">
-                            <summary class="list-none cursor-pointer bg-blue-900 text-white py-2 px-4 rounded-lg text-center font-bold text-xs group-open:bg-yellow-400 group-open:text-blue-900">Ver Respuesta</summary>
-                            <p class="mt-4 p-3 bg-blue-50 text-blue-900 rounded italic text-xs">"Memoria dirigida a los ciudadanos de la Nueva Granada por un caraqueño".</p>
-                        </details>
+        <!-- SECCIÓN: INTERACTIVIDAD / TRIVIA -->
+        <section class="mb-32">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="text-3xl font-black text-blue-900 mb-8">¿Qué tan Bolivariano eres?</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="union-card p-8 snd-click">
+                        <p class="font-bold mb-4">¿Cuál era la capital de la Gran Colombia?</p>
+                        <button onclick="alert('¡Correcto! Fue Bogotá.')" class="bg-blue-900 text-white px-6 py-2 rounded-full text-sm hover:bg-yellow-500 transition">Ver Respuesta</button>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-blue-900 snd-hover">
-                        <p class="font-bold text-blue-900 mb-4 text-sm">2. ¿Qué causó el papel moneda?</p>
-                        <details class="group snd-click">
-                            <summary class="list-none cursor-pointer bg-blue-900 text-white py-2 px-4 rounded-lg text-center font-bold text-xs group-open:bg-yellow-400 group-open:text-blue-900">Ver Respuesta</summary>
-                            <p class="mt-4 p-3 bg-blue-50 text-blue-900 rounded italic text-xs">Descontento masivo e inflación por falta de respaldo físico.</p>
-                        </details>
+                    <div class="union-card p-8 snd-click">
+                        <p class="font-bold mb-4">¿En qué año se propuso la Unión en Panamá?</p>
+                        <button onclick="alert('Fue en 1826.')" class="bg-blue-900 text-white px-6 py-2 rounded-full text-sm hover:bg-yellow-500 transition">Ver Respuesta</button>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-blue-900 snd-hover">
-                        <p class="font-bold text-blue-900 mb-4 text-sm">3. ¿Qué desastre ocurrió en marzo 1812?</p>
-                        <details class="group snd-click">
-                            <summary class="list-none cursor-pointer bg-blue-900 text-white py-2 px-4 rounded-lg text-center font-bold text-xs group-open:bg-yellow-400 group-open:text-blue-900">Ver Respuesta</summary>
-                            <p class="mt-4 p-3 bg-blue-50 text-blue-900 rounded italic text-xs">El Terremoto de Caracas.</p>
-                        </details>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-blue-900 snd-hover">
-                        <p class="font-bold text-blue-900 mb-4 text-sm">4. ¿Cómo afectó el Federalismo?</p>
-                        <details class="group snd-click">
-                            <summary class="list-none cursor-pointer bg-blue-900 text-white py-2 px-4 rounded-lg text-center font-bold text-xs group-open:bg-yellow-400 group-open:text-blue-900">Ver Respuesta</summary>
-                            <p class="mt-4 p-3 bg-blue-50 text-blue-900 rounded italic text-xs">Impidió un tesoro centralizado para pagar al ejército.</p>
-                        </details>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-blue-900 snd-hover">
-                        <p class="font-bold text-blue-900 mb-4 text-sm">5. ¿Qué es "disipación de rentas"?</p>
-                        <details class="group snd-click">
-                            <summary class="list-none cursor-pointer bg-blue-900 text-white py-2 px-4 rounded-lg text-center font-bold text-xs group-open:bg-yellow-400 group-open:text-blue-900">Ver Respuesta</summary>
-                            <p class="mt-4 p-3 bg-blue-50 text-blue-900 rounded italic text-xs">Gasto innecesario en burocracia y objetos frívolos.</p>
-                        </details>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-blue-900 snd-hover">
-                        <p class="font-bold text-blue-900 mb-4 text-sm">6. ¿Fecha del documento?</p>
-                        <details class="group snd-click">
-                            <summary class="list-none cursor-pointer bg-blue-900 text-white py-2 px-4 rounded-lg text-center font-bold text-xs group-open:bg-yellow-400 group-open:text-blue-900">Ver Respuesta</summary>
-                            <p class="mt-4 p-3 bg-blue-50 text-blue-900 rounded italic text-xs">15 de diciembre de 1812.</p>
-                        </details>
-                      </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-blue-900 lg:col-span-3">
-                        <p class="font-bold text-blue-900 mb-4 text-sm text-center">7. ¿Cuál era el objetivo final de Bolívar?</p>
-                        <details class="group snd-click">
-                            <summary class="list-none cursor-pointer bg-blue-900 text-white py-2 px-4 rounded-lg text-center font-bold text-xs group-open:bg-yellow-400 group-open:text-blue-900">Ver Respuesta</summary>
-                            <p class="mt-4 p-3 bg-blue-50 text-blue-900 rounded italic text-xs text-center">Alertar a la Nueva Granada sobre los errores de Venezuela para no repetirlos y lograr la unión continental.</p>
-                        </details>
+                    <div class="union-card p-8 snd-click">
+                        <p class="font-bold mb-4">¿Quién escribió la Carta de Jamaica?</p>
+                        <button onclick="alert('Simón Bolívar, el Libertador.')" class="bg-blue-900 text-white px-6 py-2 rounded-full text-sm hover:bg-yellow-500 transition">Ver Respuesta</button>
                     </div>
                 </div>
             </div>
@@ -530,96 +265,34 @@
 
     </main>
 
+    <!-- PIE DE PAGINA [source: 1] -->
     <footer>
         <div class="container mx-auto">
             <h3 class="text-3xl font-black mb-2">COLEGIO LA SALLE LA COLINA</h3>
             <p class="text-yellow-400 font-bold text-xl uppercase tracking-widest">Andrés Delgado Sallustio</p>
-            <p class="text-gray-400 mt-2">3er Año - Sección A</p>
-            <div class="footer-line"></div>
-            <p class="text-sm opacity-50">GHC - Profesor: Jesús Goite</p>
+            <p class="text-gray-400 mt-2">3er Año - Sección "A"</p>
+            <div class="h-1 w-20 bg-yellow-400 mx-auto my-6"></div>
+            <p class="text-sm opacity-50">Área: GHC | Prof. Jesús Goite | 2026</p>
         </div>
     </footer>
 
     <script>
-        // --- CONFIGURACIÓN DE SONIDOS ---
-        const sndHover = new Howl({
-            src: ['https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'],
-            volume: 0.2
-        });
+        // Configuración de Audio
+        const hoverSnd = new Howl({ src: ['https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'], volume: 0.2 });
+        const clickSnd = new Howl({ src: ['https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'], volume: 0.4 });
 
-        const sndClick = new Howl({
-            src: ['https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'],
-            volume: 0.5
-        });
-
-        const sndReveal = new Howl({
-            src: ['https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3'],
-            volume: 0.1
-        });
-
-        // Aplicar sonidos a elementos
         document.querySelectorAll('.snd-hover').forEach(el => {
-            el.addEventListener('mouseenter', () => sndHover.play());
+            el.addEventListener('mouseenter', () => hoverSnd.play());
         });
-
         document.querySelectorAll('.snd-click').forEach(el => {
-            el.addEventListener('click', () => sndClick.play());
+            el.addEventListener('click', () => clickSnd.play());
         });
 
-        // --- Lógica del Carrusel ---
-        let slideIndex = 0;
-        const slides = document.getElementsByClassName("carousel-slide");
-
-        function showSlides() {
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}    
-            slides[slideIndex-1].style.display = "block";  
-            setTimeout(showSlides, 4000); 
-        }
-        showSlides();
-
-        // --- ScrollReveal Animaciones ---
-        ScrollReveal().reveal('.reveal-left', { 
-            origin: 'left', 
-            distance: '80px', 
-            duration: 1200, 
-            delay: 200,
-            beforeReveal: () => sndReveal.play()
-        });
-        
-        ScrollReveal().reveal('.reveal-right', { 
-            origin: 'right', 
-            distance: '80px', 
-            duration: 1200, 
-            delay: 200,
-            beforeReveal: () => sndReveal.play()
-        });
-
-        ScrollReveal().reveal('.reveal-up', { 
-            origin: 'bottom', 
-            distance: '50px', 
-            duration: 1000, 
-            interval: 200,
-            beforeReveal: () => sndReveal.play()
-        });
-
-        ScrollReveal().reveal('.eco-card', { 
-            scale: 0.85, 
-            duration: 1000, 
-            interval: 150,
-            beforeReveal: () => sndReveal.play()
-        });
-
-        // Botón de scroll suave
-        document.querySelector('.btn-scroll').addEventListener('click', function() {
-            window.scrollTo({
-                top: window.innerHeight,
-                behavior: 'smooth'
-            });
-        });
+        // Animaciones de Revelado
+        ScrollReveal().reveal('.reveal-up', { origin: 'bottom', distance: '50px', duration: 1000, interval: 200 });
+        ScrollReveal().reveal('.reveal-left', { origin: 'left', distance: '80px', duration: 1200 });
+        ScrollReveal().reveal('.reveal-right', { origin: 'right', distance: '80px', duration: 1200 });
+        ScrollReveal().reveal('.union-card', { scale: 0.9, duration: 1000, interval: 100 });
     </script>
 
 </body>
