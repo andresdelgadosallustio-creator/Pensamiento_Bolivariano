@@ -3,297 +3,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Unión Sudamericana | Andrés Delgado</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>¿Sabes cuánto pesa tu vida digital? - Patrulla Toros</title>
+    <!-- Tailwind CSS para diseño fluido y premium -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        scoutPurple: '#612181',
+                        scoutLightPurple: '#8C4799',
+                        scoutGreen: '#2e7d32',
+                        scoutYellow: '#fbc02d',
+                        scoutDark: '#1a1a1a'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --lasalle-blue: #002855;
-            --lasalle-gold: #FFD700;
-            --soft-white: #F8F9FA;
-            --union-red: #C41E3A;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--soft-white);
-            color: #1a1a1a;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-
-        /* Hero Section Dinámico */
-        .hero-union {
-            background: linear-gradient(rgba(0, 40, 85, 0.7), rgba(0, 40, 85, 0.9)), 
-                        url('https://images.unsplash.com/photo-1599739291060-4578e77dac5d?auto=format&fit=crop&q=80&w=1600') center/cover;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-        }
-
-        /* Línea de Tiempo Vertical */
-        .timeline-container {
-            position: relative;
-            padding: 20px 0;
-        }
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            width: 4px;
-            height: 100%;
-            background: var(--lasalle-gold);
-            transform: translateX(-50%);
-        }
-        .timeline-item {
-            margin-bottom: 40px;
-            width: 45%;
-            position: relative;
-        }
-        .timeline-item.right { margin-left: 55%; }
-        .timeline-dot {
-            position: absolute;
-            right: -12.5%;
-            top: 10px;
-            width: 20px;
-            height: 20px;
-            background: var(--lasalle-blue);
-            border: 4px solid var(--lasalle-gold);
-            border-radius: 50%;
-            z-index: 2;
-        }
-        .right .timeline-dot { left: -12.5%; }
-
-        /* Tarjetas de la Unión */
-        .union-card {
-            background: white;
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        .union-card:hover {
-            transform: scale(1.03) translateY(-10px);
-            box-shadow: 0 25px 50px -12px rgba(0, 40, 85, 0.25);
-        }
-
-        /* Efectos de Sonido Hover */
-        .snd-hover { cursor: pointer; }
-
-        footer {
-            background-color: var(--lasalle-blue);
-            color: white;
-            padding: 30px 10px;
-            text-align: center;
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #FFD700, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
 
-    <!-- BANNER INSTITUCIONAL [source: 1] -->
-    <header class="mb-10 p-4 border-b-4 border-yellow-500 bg-white shadow-xl rounded-b-xl">
-        <div class="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm">
-            <div class="w-full md:w-1/4 text-left mb-4 md:mb-0 flex justify-center md:justify-start">
-                <a href="https://www.lslc.edu.ve/" target="_blank">
-                    <img src="https://lh3.googleusercontent.com/d/1BYlQ6pVnT1pKVxhg1qS1S8NIPtLt-Rk-=s220?authuser=0" alt="Logo La Salle" class="snd-hover h-16">
-                </a>
-            </div>
-            <div class="w-full md:w-2/4 text-center font-bold">
-                <p class="uppercase text-sm">República Bolivariana de Venezuela</p>
-                <p>Ministerio del Poder Popular para la Educación</p>
-                <p>U.E. Colegio La Salle La Colina</p>
-                <div class="text-xs mt-1 text-blue-800">
-                    <p>Año escolar: 2025-2026 | 3er año "A"</p>
+    <!-- HEADER / BANNER SCOUT -->
+    <header class="bg-scoutPurple text-white shadow-xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-scoutPurple to-scoutLightPurple opacity-90"></div>
+        <!-- Líneas abstractas de fondo similares al folleto original -->
+        <div class="absolute inset-0 opacity-10">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <span class="text-xs font-bold tracking-widest uppercase text-scoutYellow">Asociación de Scouts de Venezuela</span>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">PATRULLA TOROS DE LA SALLE LA COLINA</h1>
+                    <p class="text-sm text-purple-200">Distrito Capital • Mafeking "El Inicio"</p>
+                    <span class="text-xs block text-scoutYellow font-bold">JUEGO AMPLIO 2026</span>
+                    <span class="text-sm font-extrabold block">Guardianes del Bienestar</span>
                 </div>
             </div>
-            <div class="w-full md:w-1/4 text-right mt-4 md:mt-0 flex justify-center md:justify-end">
-                <img src="https://lh3.googleusercontent.com/d/1ebbIWcu8BO69rBXvVLtj8y2kX1_YYhbO=s110?authuser=0" alt="Lema" class="h-16">
-            </div>
-        </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero-union">
-        <div class="px-4">
-            <span class="bg-yellow-400 text-blue-900 px-4 py-1 rounded-full font-black text-sm uppercase tracking-widest reveal-up">GHC - Pensamiento Bolivariano</span>
-            <h1 class="text-5xl md:text-7xl font-black mt-4 reveal-up">El Sueño de la <br><span class="gradient-text">Unión Sudamericana</span></h1>
-            <p class="mt-6 text-xl opacity-90 reveal-up italic">"Una sola debe ser la patria de todos los americanos"</p>
-        </div>
-    </section>
-
-    <main class="container mx-auto px-4 py-12">
-
-        <!-- SECCIÓN 1: EVOLUCIÓN DEL PENSAMIENTO (Línea de Tiempo) -->
-        <section id="evolucion" class="mb-32">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-blue-900 uppercase">Hitos del Pensamiento</h2>
-                <p class="text-gray-500">De la rebeldía a la consolidación continental</p>
-            </div>
-
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
-                
-                <!-- Item 1 -->
-                <div class="timeline-item reveal-left">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border-r-8 border-blue-900">
-                        <span class="text-yellow-600 font-black">1812</span>
-                        <h4 class="font-bold text-xl">Manifiesto de Cartagena</h4>
-                        <p class="text-sm text-gray-600">Primer análisis crítico. Bolívar entiende que la desunión nos lleva al fracaso.</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="timeline-item right reveal-right">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-yellow-500">
-                        <span class="text-yellow-600 font-black">1815</span>
-                        <h4 class="font-bold text-xl">Carta de Jamaica</h4>
-                        <p class="text-sm text-gray-600">La visión profética. Predice el destino de las naciones americanas y propone la unión.</p>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="timeline-item reveal-left">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border-r-8 border-blue-900">
-                        <span class="text-yellow-600 font-black">1819</span>
-                        <h4 class="font-bold text-xl">Discurso de Angostura</h4>
-                        <p class="text-sm text-gray-600">Bases institucionales. "La unión lo hace todo y debemos conservar este principio".</p>
-                    </div>
+    <!-- INTRODUCCIÓN JUVENIL -->
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow">
+        <section class="bg-white rounded-3xl p-6 md:p-8 shadow-md mb-8 border border-slate-100 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-scoutYellow/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="relative">
+                <span class="bg-scoutYellow/20 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Desafío Ecológico Digital</span>
+                <h2 class="text-3xl font-black text-slate-900 mt-2 mb-4">¿Sabes cuánto pesa tu vida digital? 📱💻</h2>
+                <p class="text-slate-600 leading-relaxed text-base">
+                    ¡Siempre Listos! Nosotros, los integrantes de la <strong>Patrulla Toros de La Salle La colina</strong>, aceptamos el reto de medir nuestro impacto ecológico invisible. En Venezuela, donde a veces sufrimos por la luz y los megas, nos dimos cuenta de que cada video de TikTok, cada partida online y cada sticker pesado de WhatsApp que enviamos genera calor en servidores gigantescos y consume energía real. 
+                </p>
+                <div class="mt-4 p-4 bg-purple-50 rounded-xl border-l-4 border-scoutPurple flex items-center gap-3">
+                    <span class="text-2xl">💡</span>
+                    <p class="text-sm text-scoutPurple font-medium"><strong>¿Sabías qué?</strong> Guardar miles de correos de spam o fotos duplicadas en la nube equivale a dejar un bombillo encendido durante horas.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN CENTRAL: UNIÓN SUDAMERICANA (80% DEL CONTENIDO) -->
-        <section id="union-sudamericana" class="bg-blue-900 text-white rounded-[40px] p-8 md:p-16 mb-32 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-10">
-                <i class="fa-solid fa-earth-americas text-[300px]"></i>
-            </div>
-
-            <div class="relative z-10">
-                <h2 class="text-4xl md:text-6xl font-black mb-8 text-yellow-400">La Unión Sudamericana: <br>El Eje del Pensamiento</h2>
+        <!-- CONTENEDOR DE PASOS (GRID) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- COLUMNA IZQUIERDA: CALCULADORA Y ESTADÍSTICAS (Paso 1: Investiga y Calcula) -->
+            <div class="lg:col-span-7 flex flex-col gap-8">
                 
-                <div class="grid lg:grid-cols-2 gap-12">
-                    <div class="reveal-left">
-                        <p class="text-xl leading-relaxed mb-6">
-                            Para Simón Bolívar, la <strong>Unión Sudamericana</strong> no era un simple capricho político, era una <u>necesidad existencial</u>. Tras siglos de dominio español, sabía que pequeñas repúblicas aisladas serían presa fácil de nuevos imperios.
-                        </p>
+                <!-- PASO 1: INVESTIGA Y CALCULA -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex flex-col">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold text-lg">
+                            1
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-xl text-slate-800">Investiga y Calcula</h3>
+                            <p class="text-xs text-slate-500">Nuestra calculadora de Patrulla para estimar el CO₂ digital</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-600 mb-6">
+                        Usamos parámetros de <em>Carbon Literacy Project</em> adaptados a nuestros hábitos promedio en la patrulla. Ajusta los valores para ver la huella estimada de nuestra patrulla de <strong>6 integrantes</strong>:
+                    </p>
+
+                    <!-- CALCULADORA INTERACTIVA -->
+                    <div class="space-y-5 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <!-- Streaming de Video -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <label class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                    🎥 Streaming de Video <span class="text-xs font-normal text-slate-500">(Youtube, Netflix, Anime)</span>
+                                </label>
+                                <span class="bg-scoutPurple/10 text-scoutPurple text-xs font-extrabold px-2 py-0.5 rounded" id="val-streaming">2 h/día</span>
+                            </div>
+                            <input type="range" id="input-streaming" min="0" max="8" step="0.5" value="2" 
+                                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-scoutPurple">
+                            <span class="text-[10px] text-slate-400">Promedio de horas al día por integrante</span>
+                        </div>
+
+                        <!-- Redes Sociales -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <label class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                    📱 Redes Sociales <span class="text-xs font-normal text-slate-500">(TikTok, Instagram, WhatsApp)</span>
+                                </label>
+                                <span class="bg-scoutPurple/10 text-scoutPurple text-xs font-extrabold px-2 py-0.5 rounded" id="val-social">3 h/día</span>
+                            </div>
+                            <input type="range" id="input-social" min="0" max="8" step="0.5" value="3" 
+                                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-scoutPurple">
+                            <span class="text-[10px] text-slate-400">Promedio de horas al día por integrante</span>
+                        </div>
+
+                        <!-- Almacenamiento en la Nube -->
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <label class="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                    ☁️ Archivos y Correos Basura <span class="text-xs font-normal text-slate-500">(Google Drive, chats viejos)</span>
+                                </label>
+                                <span class="bg-scoutPurple/10 text-scoutPurple text-xs font-extrabold px-2 py-0.5 rounded" id="val-storage">150 GB</span>
+                            </div>
+                            <input type="range" id="input-storage" min="10" max="1000" step="10" value="150" 
+                                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-scoutPurple">
+                            <span class="text-[10px] text-slate-400">Espacio acumulado de almacenamiento de toda la patrulla</span>
+                        </div>
+                    </div>
+
+                    <!-- RESULTADOS EN TIEMPO REAL -->
+                    <div class="mt-6 p-5 bg-gradient-to-br from-slate-900 to-scoutPurple text-white rounded-2xl relative overflow-hidden shadow-md">
+                        <div class="absolute top-0 right-0 opacity-10">
+                            <!-- Icono de Planta / Tierra -->
+                            <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"/></svg>
+                        </div>
+                        <span class="text-xs text-scoutYellow font-bold uppercase tracking-wider">HUELLA ESTIMADA DE PATRULLA TOROS</span>
                         
-                        <div class="space-y-6">
-                            <div class="union-card p-6 text-blue-900 snd-hover">
-                                <h4 class="font-black flex items-center"><i class="fa-solid fa-shield-halved mr-3 text-red-600"></i> BLOQUE DEFENSIVO</h4>
-                                <p class="text-sm mt-2">La unión permitiría crear un ejército continental capaz de disuadir cualquier intento de reconquista europea o invasión extranjera.</p>
-                            </div>
-                            
-                            <div class="union-card p-6 text-blue-900 snd-hover">
-                                <h4 class="font-black flex items-center"><i class="fa-solid fa-handshake mr-3 text-blue-600"></i> EL CONGRESO DE PANAMÁ (1826)</h4>
-                                <p class="text-sm mt-2">Fue el intento más ambicioso de Bolívar para formalizar una confederación de naciones americanas bajo un solo pacto de ayuda mutua.</p>
-                            </div>
+                        <div class="flex items-baseline gap-2 mt-2">
+                            <span class="text-4xl md:text-5xl font-black text-white" id="total-co2">148.5</span>
+                            <span class="text-lg text-purple-200 font-bold">kg de CO₂e / año</span>
                         </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal-right">
-                        <div class="bg-blue-800 p-6 rounded-2xl border border-blue-700">
-                            <i class="fa-solid fa-Scale-balanced text-3xl text-yellow-400 mb-4"></i>
-                            <h5 class="font-bold mb-2">Identidad Común</h5>
-                            <p class="text-xs opacity-80">Compartimos lengua, religión y costumbres. Somos una "Pequeña especie humana" diferente al resto del mundo.</p>
+                        <p class="text-xs text-purple-200 mt-2">Equivale a plantar <span class="text-scoutYellow font-bold" id="trees-count">7</span> árboles autóctonos en el Parque Nacional El Ávila (Waraira Repano) para compensar nuestro impacto anual.</p>
+                        
+                        <!-- Barra de Impacto -->
+                        <div class="w-full bg-white/20 h-3 rounded-full mt-4 overflow-hidden">
+                            <div class="bg-scoutYellow h-full transition-all duration-300" id="footprint-bar" style="width: 45%;"></div>
                         </div>
-                        <div class="bg-blue-800 p-6 rounded-2xl border border-blue-700">
-                            <i class="fa-solid fa-bolt text-3xl text-yellow-400 mb-4"></i>
-                            <h5 class="font-bold mb-2">Equilibrio del Universo</h5>
-                            <p class="text-xs opacity-80">Bolívar creía que una América unida serviría como contrapeso entre el viejo mundo y las potencias emergentes.</p>
-                        </div>
-                        <div class="col-span-full bg-yellow-400 p-6 rounded-2xl text-blue-900">
-                            <h4 class="font-black text-center text-xl mb-4">Línea de Tiempo: Camino a la Unión</h4>
-                            <div class="flex justify-between text-[10px] font-bold uppercase tracking-tighter">
-                                <div class="text-center"><span>1821</span><br>Constitución de Cúcuta</div>
-                                <div class="text-center"><span>1824</span><br>Victoria de Ayacucho</div>
-                                <div class="text-center"><span>1826</span><br>Congreso de Panamá</div>
-                                <div class="text-center"><span>1830</span><br>Disolución de la Gran Colombia</div>
-                            </div>
-                            <div class="w-full bg-blue-900 h-2 mt-2 rounded-full overflow-hidden">
-                                <div class="bg-red-600 h-full" style="width: 75%"></div>
-                            </div>
+                        <div class="flex justify-between text-[10px] text-purple-300 mt-1">
+                            <span>Bajo</span>
+                            <span>Medio</span>
+                            <span>Crítico</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-16 p-8 bg-white/10 rounded-3xl border border-white/20 italic text-center reveal-up">
-                    <p class="text-2xl">"Yo deseo más que otro alguno ver formar en América la más grande nación del mundo, menos por su extensión y riquezas que por su libertad y gloria."</p>
-                    <span class="block mt-4 font-black text-yellow-400">— Carta de Jamaica</span>
+                <!-- NOTA EXPLICATIVA SENCILLA (Para el cuaderno de patrulla) -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+                    <h4 class="font-bold text-slate-800 mb-2">📊 Nuestro Análisis de Patrulla</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Tras debatir en nuestro rincón de patrulla, notamos que el <strong>streaming de video</strong> (Youtube para escuchar música y TikToks de baile/humor) es lo que más consume. Para los chamos en Venezuela, esto tiene doble impacto: consumimos servidores globales y además forzamos los sistemas locales de distribución de red. ¡La eficiencia digital es nuestro nuevo norte ecológico!
+                    </p>
                 </div>
             </div>
-        </section>
 
-        <!-- SECCIÓN: INTERACTIVIDAD / TRIVIA -->
-        <section class="mb-32">
-            <div class="max-w-4xl mx-auto text-center">
-                <h3 class="text-3xl font-black text-blue-900 mb-8">¿Qué tan Bolivariano eres?</h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="union-card p-8 snd-click">
-                        <p class="font-bold mb-4">¿Cuál era la capital de la Gran Colombia?</p>
-                        <button onclick="alert('¡Correcto! Fue Bogotá.')" class="bg-blue-900 text-white px-6 py-2 rounded-full text-sm hover:bg-yellow-500 transition">Ver Respuesta</button>
+            <!-- COLUMNA DERECHA: PLAN DE ACCIÓN Y REDES SOCIALES (Pasos 2, 3 y 4) -->
+            <div class="lg:col-span-5 flex flex-col gap-8">
+                
+                <!-- PASO 2: PLAN DE ACCIÓN (3 Compromisos Reales) -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold text-lg">
+                            2
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-xl text-slate-800">Plan de Acción</h3>
+                            <p class="text-xs text-slate-500">Nuestros 3 compromisos de cambio realistas</p>
+                        </div>
                     </div>
-                    <div class="union-card p-8 snd-click">
-                        <p class="font-bold mb-4">¿En qué año se propuso la Unión en Panamá?</p>
-                        <button onclick="alert('Fue en 1826.')" class="bg-blue-900 text-white px-6 py-2 rounded-full text-sm hover:bg-yellow-500 transition">Ver Respuesta</button>
-                    </div>
-                    <div class="union-card p-8 snd-click">
-                        <p class="font-bold mb-4">¿Quién escribió la Carta de Jamaica?</p>
-                        <button onclick="alert('Simón Bolívar, el Libertador.')" class="bg-blue-900 text-white px-6 py-2 rounded-full text-sm hover:bg-yellow-500 transition">Ver Respuesta</button>
+
+                    <div class="space-y-4">
+                        <!-- Compromiso 1 -->
+                        <div class="p-4 border border-slate-100 rounded-2xl bg-amber-50/50 hover:bg-amber-50 transition-colors">
+                            <div class="flex items-start gap-3">
+                                <span class="text-2xl mt-1">🗑️</span>
+                                <div>
+                                    <h4 class="font-extrabold text-sm text-slate-800">1. Desintoxicación de WhatsApp y Drive</h4>
+                                    <p class="text-xs text-slate-600 mt-1">
+                                        Vaciaremos semanalmente las carpetas de memes pesados y stickers repetidos de los chats de la patrulla y borraremos correos promocionales viejos.
+                                    </p>
+                                    <span class="text-[10px] bg-amber-200/50 text-amber-800 font-bold px-2 py-0.5 rounded mt-2 inline-block">¡Ahorra espacio en la nube!</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Compromiso 2 -->
+                        <div class="p-4 border border-slate-100 rounded-2xl bg-blue-50/50 hover:bg-blue-50 transition-colors">
+                            <div class="flex items-start gap-3">
+                                <span class="text-2xl mt-1">📉</span>
+                                <div>
+                                    <h4 class="font-extrabold text-sm text-slate-800">2. Streaming Inteligente a 480p</h4>
+                                    <p class="text-xs text-slate-600 mt-1">
+                                        Cuando escuchemos música en YouTube o veamos tutoriales en el celular, configuraremos la calidad en 480p en lugar de 1080p. ¡Se escucha igual de bien y ahorra 60% de datos!
+                                    </p>
+                                    <span class="text-[10px] bg-blue-200/50 text-blue-800 font-bold px-2 py-0.5 rounded mt-2 inline-block">Especial para planes de datos móviles</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Compromiso 3 -->
+                        <div class="p-4 border border-slate-100 rounded-2xl bg-green-50/50 hover:bg-green-50 transition-colors">
+                            <div class="flex items-start gap-3">
+                                <span class="text-2xl mt-1">🔌</span>
+                                <div>
+                                    <h4 class="font-extrabold text-sm text-slate-800">3. Apagón Vampiro en Reuniones</h4>
+                                    <p class="text-xs text-slate-600 mt-1">
+                                        Desconectaremos todos los cargadores de teléfono y canaimitas del enchufe cuando terminen de cargar. No dejaremos cargadores conectados "en vacío" en la sede ni en nuestras casas.
+                                    </p>
+                                    <span class="text-[10px] bg-green-200/50 text-green-800 font-bold px-2 py-0.5 rounded mt-2 inline-block">Cero energía fantasma</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- PASO 3 & 4: EXPLORACIÓN CREATIVA, PUBLICA Y REPORTA -->
+                <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-lg">
+                            3
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-xl text-slate-800">Publica y Reporta</h3>
+                            <p class="text-xs text-slate-500">Nuestros datos listos para las redes sociales</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-slate-600 mb-4">
+                        Copia este texto y compártelo en las redes de tu Grupo Scout con una foto o captura de esta infografía interactiva para validar nuestra participación:
+                    </p>
+
+                    <!-- CAJA DEL POST -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 relative">
+                        <textarea id="post-text" readonly class="w-full bg-transparent text-xs text-slate-700 font-mono h-48 focus:outline-none resize-none leading-relaxed">¡LA PATRULLA TOROS DE LA SALLE LA COLINA SE UNE AL CAMBIO!
+Aceptamos el reto de @SCOUTSCAPITAL y @SCOUTSDEVENEZUELA en el Juego Amplio Mafeking 2026. 
+
+¿Sabes cuánto pesa tu vida digital? 📱💻
+Nuestra patrulla tiene una huella digital estimada de 148.5 kg de CO₂e al año. ¡Casi lo mismo que un viaje largo en carro! 
+
+Para ser verdaderos Guardianes del Bienestar, nuestros 3 compromisos son:
+1️⃣ Desintoxicación de WhatsApp y Drive (¡Limpieza de chats y spam!).
+2️⃣ Configurar nuestros videos en 480p en el cel para no saturar servidores (¡y ahorrar datos!).
+3️⃣ Desconectar cargadores "vampiro" cuando alcancen el 100%.
+
+Y tú... ¿Te atreves a pesar tu vida digital? 🌿⚡
+
+#Calculatuhuelladigital #jarregioncapital2026 #mafekingelinicio #cadetesdemafeking #guardianesdelbienestar</textarea>
+                        
+                        <!-- Botón de Copiar -->
+                        <button onclick="copyPostText()" class="w-full mt-3 bg-scoutPurple hover:bg-scoutLightPurple text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
+                            <span>📋</span> Copiar Texto de Publicación
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SECCIÓN DIVERTIDA: FIRMAS DE PATRULLA -->
+        <section class="mt-8 bg-gradient-to-r from-scoutPurple to-purple-900 text-white rounded-3xl p-6 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+                <h3 class="font-black text-xl mb-1"> ¡Toros en Acción!</h3>
+                <p class="text-xs text-purple-200">Este informe interactivo fue diseñado con el esfuerzo de toda la Patrulla:</p>
+                <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="bg-white/10 text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/10">Mauricio Trapani (Guía)</span>
+                    <span class="bg-white/10 text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/10">Gian Carlos Granado</span>
+                    <span class="bg-white/10 text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/10">Gabriel Silva</span>
+                    <span class="bg-white/10 text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/10">Mauricio Musso</span>
+                    <span class="bg-white/10 text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/10">Mathias Villareal</span>
+                    <span class="bg-white/10 text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/10">Andres Delgado (Subguía)</span>
+                </div>
+            </div>
+            <div class="text-center md:text-right">
+                <span class="text-xs text-scoutYellow font-extrabold uppercase tracking-widest block">SIEMPRE LISTOS</span>
+                <span class="text-sm font-semibold text-white/80">Para salvar nuestro planeta 🌎</span>
             </div>
         </section>
-
     </main>
 
-    <!-- PIE DE PAGINA [source: 1] -->
-    <footer>
-        <div class="container mx-auto">
-            <h3 class="text-3xl font-black mb-2">COLEGIO LA SALLE LA COLINA</h3>
-            <p class="text-yellow-400 font-bold text-xl uppercase tracking-widest">Andrés Delgado Sallustio</p>
-            <p class="text-gray-400 mt-2">3er Año - Sección "A"</p>
-            <div class="h-1 w-20 bg-yellow-400 mx-auto my-6"></div>
-            <p class="text-sm opacity-50">Área: GHC | Prof. Jesús Goite | 2026</p>
-        </div>
+    <!-- FOOTER -->
+    <footer class="bg-scoutDark text-slate-400 py-6 text-center text-xs border-t border-slate-800 mt-12">
+        <p>Patrulla Toros - LA SALLE LA COLINA.</p>
+        <p class="mt-1 text-slate-600">Mafeking: El Inicio • Actividad "Huella de Carbono Digital"</p>
     </footer>
 
+    <!-- TOAST DE NOTIFICACIÓN DE COPIADO -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-emerald-600 text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50">
+        <span class="text-xl">✅</span>
+        <div>
+            <h5 class="font-bold text-sm">¡Texto Copiado!</h5>
+            <p class="text-[10px] text-emerald-100">Pégalo en tu publicación de Instagram, Facebook o TikTok.</p>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE CÁLCULO E INTERACTIVIDAD -->
     <script>
-        // Configuración de Audio
-        const hoverSnd = new Howl({ src: ['https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'], volume: 0.2 });
-        const clickSnd = new Howl({ src: ['https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'], volume: 0.4 });
+        // Elementos del DOM
+        const inputStreaming = document.getElementById('input-streaming');
+        const inputSocial = document.getElementById('input-social');
+        const inputStorage = document.getElementById('input-storage');
 
-        document.querySelectorAll('.snd-hover').forEach(el => {
-            el.addEventListener('mouseenter', () => hoverSnd.play());
-        });
-        document.querySelectorAll('.snd-click').forEach(el => {
-            el.addEventListener('click', () => clickSnd.play());
-        });
+        const valStreaming = document.getElementById('val-streaming');
+        const valSocial = document.getElementById('val-social');
+        const valStorage = document.getElementById('val-storage');
 
-        // Animaciones de Revelado
-        ScrollReveal().reveal('.reveal-up', { origin: 'bottom', distance: '50px', duration: 1000, interval: 200 });
-        ScrollReveal().reveal('.reveal-left', { origin: 'left', distance: '80px', duration: 1200 });
-        ScrollReveal().reveal('.reveal-right', { origin: 'right', distance: '80px', duration: 1200 });
-        ScrollReveal().reveal('.union-card', { scale: 0.9, duration: 1000, interval: 100 });
+        const totalCO2Elem = document.getElementById('total-co2');
+        const treesCountElem = document.getElementById('trees-count');
+        const footprintBar = document.getElementById('footprint-bar');
+        const postText = document.getElementById('post-text');
+
+        // Constantes de cálculo (Cojera de CO2 por hora por persona al año)
+        // Streaming video alta definición = ~0.2 kg CO2 por hora
+        // Redes sociales promedio = ~0.15 kg CO2 por hora
+        // 1 GB de almacenamiento anual en servidores = ~0.01 kg CO2 por año
+        const PATRULLA_SIZE = 6;
+
+        function updateCalculations() {
+            const hStreaming = parseFloat(inputStreaming.value);
+            const hSocial = parseFloat(inputSocial.value);
+            const gStorage = parseInt(inputStorage.value);
+
+            // Actualizar etiquetas visuales
+            valStreaming.textContent = `${hStreaming} h/día`;
+            valSocial.textContent = `${hSocial} h/día`;
+            valStorage.textContent = `${gStorage} GB`;
+
+            // Fórmulas de impacto anual para 6 personas
+            // Streaming: h/día * 365 días * 0.2 kg_CO2 * 6 personas
+            const co2Streaming = hStreaming * 365 * 0.2 * PATRULLA_SIZE;
+            // Social: h/día * 365 días * 0.15 kg_CO2 * 6 personas
+            const co2Social = hSocial * 365 * 0.15 * PATRULLA_SIZE;
+            // Almacenamiento: GB totales * 0.012 kg_CO2 al año (para toda la patrulla)
+            const co2Storage = gStorage * 0.012;
+
+            const totalCO2 = Math.round((co2Streaming + co2Social + co2Storage) * 10) / 10;
+            
+            // Un árbol nativo joven absorbe aprox. 21.8 kg de CO2 al año
+            const treesNeeded = Math.ceil(totalCO2 / 21.8);
+
+            // Mostrar resultados
+            totalCO2Elem.textContent = totalCO2.toLocaleString('es-VE');
+            treesCountElem.textContent = treesNeeded;
+
+            // Actualizar barra de progreso (rango lógico entre 50 y 800 kg de CO2)
+            let percentage = ((totalCO2 - 50) / 750) * 100;
+            percentage = Math.max(10, Math.min(100, percentage)); // Mantener límites
+            footprintBar.style.width = `${percentage}%`;
+
+            // Cambiar color de la barra según nivel de impacto
+            if (percentage < 35) {
+                footprintBar.className = "bg-emerald-500 h-full transition-all duration-300";
+            } else if (percentage < 70) {
+                footprintBar.className = "bg-scoutYellow h-full transition-all duration-300";
+            } else {
+                footprintBar.className = "bg-red-500 h-full transition-all duration-300";
+            }
+
+            // Actualizar plantilla del post
+            updatePostTemplate(totalCO2);
+        }
+
+        function updatePostTemplate(co2Value) {
+            const template = `¡LA PATRULLA TOROS DE LA SALLE LA COLINA SE UNE AL CAMBIO!
+Aceptamos el reto de @SCOUTSCAPITAL y @SCOUTSDEVENEZUELA en el Juego Amplio Mafeking 2026. 
+
+¿Sabes cuánto pesa tu vida digital? 📱💻
+Nuestra patrulla tiene una huella digital estimada de ${co2Value} kg de CO₂e al año. ¡Casi lo mismo que un viaje largo en carro! 
+
+Para ser verdaderos Guardianes del Bienestar, nuestros 3 compromisos son:
+1️⃣ Desintoxicación de WhatsApp y Drive (¡Limpieza de chats y spam!).
+2️⃣ Configurar nuestros videos en 480p en el cel para no saturar servidores (¡y ahorrar datos!).
+3️⃣ Desconectar cargadores "vampiro" cuando alcancen el 100%.
+
+Y tú... ¿Te atreves a pesar tu vida digital?
+
+#Calculatuhuelladigital #jarregioncapital2026 #mafekingelinicio #cadetesdemafeking #guardianesdelbienestar`;
+            postText.value = template;
+        }
+
+        function copyPostText() {
+            // Seleccionar y copiar usando el método tradicional seguro para iFrames
+            postText.select();
+            postText.setSelectionRange(0, 99999); // Para móviles
+            document.execCommand('copy');
+            
+            // Mostrar Toast de éxito sin usar alert()
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'translate-y-20', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-20', 'pointer-events-none');
+            }, 4000);
+        }
+
+        // Listeners
+        inputStreaming.addEventListener('input', updateCalculations);
+        inputSocial.addEventListener('input', updateCalculations);
+        inputStorage.addEventListener('input', updateCalculations);
+
+        // Inicialización
+        window.onload = function() {
+            updateCalculations();
+        };
     </script>
-
 </body>
 </html>
